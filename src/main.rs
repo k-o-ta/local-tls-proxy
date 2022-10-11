@@ -29,6 +29,11 @@ async fn main() {
     let dest_ip = args.dest_ip;
     let dest_port = args.dest_port;
 
+    println!(
+        "proxy server started: 127.0.0.1:{} -> {}:{}",
+        src_port, dest_ip, dest_port
+    );
+
     let app = warp::path!().and(reverse_proxy_filter(
         "".to_string(),
         format!("http://{}:{}/", dest_ip, dest_port),
